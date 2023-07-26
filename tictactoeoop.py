@@ -17,11 +17,10 @@ class Tictactoe():
         if not position.isdigit():
             return False
         position = int(position)
-        self.board[position-1] = self.player
         if position<0 or position>9:
             print("Plase enter number between 1 to 9: ")
-        else:
-            return False
+            return True
+        self.board[position-1] = self.player
     
     def check_win(self):
         if self.board[0] == self.board[1] == self.board[2] != "_":
@@ -44,13 +43,18 @@ class Tictactoe():
     def check_draw(self):
         if '_' not in self.board:
             return True
+    
+    def flip(self):
+        if self.player == "X":
+            self.player = 'O'
+        else:
+            self.player = 'X'
         
 G = Tictactoe()
 while True:
     if G.get_user_input():
-        continue
-    else:
         print("The input should be integer\nIt should contain number between 1 to 9")
+        continue
     G.showboard()
     if G.check_draw():
         print("Draw")
@@ -59,7 +63,4 @@ while True:
     if win_check:
         print(f'{G.player} Won')
         break
-    if G.player == "X":
-        G.player = "O"
-    else:
-        G.player = "X"
+    G.flip()
