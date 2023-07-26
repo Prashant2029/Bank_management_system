@@ -15,13 +15,14 @@ class Tictactoe():
         position = input(f"Enter position from 1 to 9:\n{self.player}'s Turn\n")
         print()
         if not position.isdigit():
-            return False
+            return True
         position = int(position)
         if position<0 or position>9:
             print("Plase enter number between 1 to 9: ")
             return True
         self.board[position-1] = self.player
     
+
     def check_win(self):
         if self.board[0] == self.board[1] == self.board[2] != "_":
             return True
